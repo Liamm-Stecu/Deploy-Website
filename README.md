@@ -1,18 +1,18 @@
 # 🚀 Deploy-Webiste
 
-> Tutorial deploy website di Debian Linux menggunakan Apache2, MariaDB, PHP-FPM, dan Webmin.
+> Tutorial deploy website di Debian Linux menggunakan Apache2, MariaDB, PHP-FPM, SSL, dan Webmin.
 
 ---
 
 # 👤 Tahap 1 — SSH ke Server Debian
 
-## Login SSH via CMD Windows
+## 🔐 Login SSH via CMD Windows
 
 ```bash
 ssh user@ip_debian
 ```
 
-## Masuk Root
+## 🔑 Masuk Root
 
 ```bash
 su -
@@ -28,7 +28,7 @@ su -
 
 # 🌐 Tahap 2 — Setup Apache2 + PHP-FPM
 
-## Install Package
+## 📦 Install Package
 
 ```bash
 apt install apache2 mariadb-server php-fpm -y
@@ -36,7 +36,7 @@ apt install apache2 mariadb-server php-fpm -y
 
 ---
 
-## Aktifkan Proxy Module
+## ⚙️ Aktifkan Proxy Module
 
 ```bash
 a2enmod proxy_fcgi
@@ -44,7 +44,7 @@ a2enmod proxy_fcgi
 
 ---
 
-## Aktifkan PHP-FPM
+## ⚙️ Aktifkan PHP-FPM
 
 ```bash
 a2enconf php8.4-fpm
@@ -52,7 +52,7 @@ a2enconf php8.4-fpm
 
 ---
 
-## Reload Apache
+## 🔄 Reload Apache
 
 ```bash
 systemctl reload apache2
@@ -68,7 +68,7 @@ systemctl reload apache2
 
 # 🔒 Tahap 3 — Setup SSL HTTPS Apache
 
-## Aktifkan SSL Module
+## ⚙️ Aktifkan SSL Module
 
 ```bash
 a2enmod ssl
@@ -76,7 +76,7 @@ a2enmod ssl
 
 ---
 
-## Buat Folder SSL
+## 📁 Buat Folder SSL
 
 ```bash
 mkdir ssl
@@ -85,7 +85,7 @@ cd ssl
 
 ---
 
-## Generate SSL Certificate
+## 🔐 Generate SSL Certificate
 
 ```bash
 openssl req -x509 -nodes -days 90 -newkey rsa:2048 \
@@ -95,7 +95,7 @@ openssl req -x509 -nodes -days 90 -newkey rsa:2048 \
 
 ---
 
-## Cek File SSL
+## 📂 Cek File SSL
 
 ```bash
 ls
@@ -110,15 +110,21 @@ self.crt
 
 ---
 
-## Edit SSL Config Apache
+## 🛠️ Edit SSL Config Apache
 
 ```bash
 nano /etc/apache2/sites-available/default-ssl.conf
 ```
 
+Jika error atau file tidak ada:
+
+```bash
+nano /etc/apache2/sites-available/000-default-ssl.conf
+```
+
 ---
 
-## Ubah Lokasi SSL
+## ✏️ Ubah Lokasi SSL
 
 Cari:
 
@@ -136,7 +142,7 @@ SSLCertificateKeyFile /root/ssl/self.key
 
 ---
 
-## Aktifkan SSL Site
+## ✅ Aktifkan SSL Site
 
 ```bash
 a2ensite default-ssl.conf
@@ -144,13 +150,13 @@ a2ensite default-ssl.conf
 
 ---
 
-## Reload Apache
+## 🔄 Reload Apache
 
 ```bash
 systemctl reload apache2
 ```
 
-Jika error:
+Jika reload error:
 
 ```bash
 systemctl start apache2
@@ -160,7 +166,7 @@ systemctl start apache2
 
 ## 📸 Screenshot
 
-### Setup SSL
+### 🔒 Setup SSL
 
 ![SSL](img/setup-ssl.png)
 
@@ -168,7 +174,7 @@ systemctl start apache2
 
 ---
 
-### SSL Certificate
+### 📜 SSL Certificate
 
 ![SSL Rename](img/rename-ssl.png)
 
@@ -176,15 +182,15 @@ systemctl start apache2
 
 # 🖥️ Tahap 4 — Setup Webmin
 
-## Download Webmin
+## 📥 Download Webmin
 
 ```bash
-wget http/ip_website/webmin_2.630_all.deb
+wget http://IP_SERVER/webmin_2.630_all.deb
 ```
 
 ---
 
-## Install Webmin
+## 📦 Install Webmin
 
 ```bash
 dpkg -i webmin_2.630_all.deb
@@ -192,16 +198,21 @@ dpkg -i webmin_2.630_all.deb
 
 ---
 
-## Jika Dependency Error
+## ⚠️ Jika Dependency Error
 
 ```bash
 apt install -f
 ```
-Lalu dpkg ulang
+
+Lalu jalankan ulang:
+
+```bash
+dpkg -i webmin_2.630_all.deb
+```
 
 ---
 
-## Akses Webmin
+## 🌍 Akses Webmin
 
 ```txt
 https://IP_DEBIAN:10000
@@ -231,7 +242,7 @@ Upload folder website ke:
 
 ---
 
-## Langkah
+## 📋 Langkah
 
 * Masuk Webmin
 * Tools
@@ -243,19 +254,19 @@ Upload folder website ke:
 
 ## 📸 Screenshot
 
-### File Manager
+### 📁 File Manager
 
 ![Upload Website](img/upload-website.png)
 
 ---
 
-### Select Folder
+### 📤 Select Folder
 
 ![Upload Website 2](img/upload-webiste2.png)
 
 ---
 
-### Hasil Upload
+### ✅ Hasil Upload
 
 ![Upload Website 3](img/upload-website3.png)
 
@@ -263,7 +274,7 @@ Upload folder website ke:
 
 # 🔑 Tahap 6 — Buat Password Root MariaDB
 
-## Langkah
+## 📋 Langkah
 
 * Masuk Webmin
 * MariaDB Database Server
@@ -281,12 +292,12 @@ Upload folder website ke:
 
 # 🗄️ Tahap 7 — Buat Database
 
-## Langkah
+## 📋 Langkah
 
 * Masuk MariaDB Database Server
-* Klik Create a new database
+* Klik `Create a new database`
 * Isi nama database
-* Klik Create
+* Klik `Create`
 
 ---
 
@@ -300,13 +311,13 @@ Upload folder website ke:
 
 # 📥 Tahap 8 — Import SQL via Webmin
 
-## Langkah
+## 📋 Langkah
 
 * Masuk database
 * Execute SQL
 * Import text file
 * Upload file `.sql`
-* Execute
+* Klik Execute
 
 ---
 
@@ -320,10 +331,11 @@ Upload folder website ke:
 
 ![Import SQL 4](img/import-sql4.png)
 
-Kalo import bisa, langsung akses website nya
+Jika berhasil import, langsung akses website kalian.
+
 ---
 
-# ❌ Jika Error Import SQL
+# ❌ Troubleshoot — Error Import SQL
 
 Kadang Webmin error seperti:
 
@@ -339,23 +351,13 @@ Error 1146 Table doesn't exist
 
 ---
 
-# ✅ Hasil Deploy Website
-
-Website berhasil dijalankan.
-
-## 📸 Screenshot
-
-![Hasil Website](img/hasil.png)
-
----
-
-# 💻 Trobleshoot — Import SQL via CLI Terminal
+# 💻 Tahap 9 — Import SQL via CLI Terminal
 
 Jika Webmin gagal import SQL, gunakan terminal Debian.
 
 ---
 
-## Command
+## ⚙️ Command
 
 ```bash
 mysql -u root -p nama_database < file.sql
@@ -363,7 +365,7 @@ mysql -u root -p nama_database < file.sql
 
 ---
 
-## Contoh
+## 🧪 Contoh
 
 ```bash
 mysql -u root -p acelajg_db < /var/www/html/ecommerce/ecommerce.sql
@@ -374,7 +376,33 @@ mysql -u root -p acelajg_db < /var/www/html/ecommerce/ecommerce.sql
 ## 📸 Screenshot
 
 ![Import CLI](img/import-sql6.png)
-lalu access website kalian
+
+Setelah berhasil import, akses kembali website kalian.
+
+---
+
+# ⚠️ Troubleshoot — Error HTTP 500
+
+Jika SQL berhasil diimport tetapi website menampilkan error HTTP 500.
+
+---
+
+## 🔧 Solusi
+
+Ubah konfigurasi database pada file config website kalian:
+
+* Username MySQL
+* Password MySQL
+* Nama Database
+
+Sesuaikan dengan database yang dibuat pada Tahap 6 dan Tahap 7.
+
+---
+
+## 📸 Screenshot
+
+![Config PHP](img/config.php.png)
+
 ---
 
 # ✅ Hasil Deploy Website
@@ -384,60 +412,9 @@ Website berhasil dijalankan.
 ## 📸 Screenshot
 
 ![Hasil Website](img/hasil.png)
-
----
-
-## Trobleshoot - error http 500
-
-Jika import sql nya bisa tapi saat akses website nya error HTTP 500
-
----
-1. Ubah configurasi mysql_connect di website kalian serperti user, pass, database. sesuaikan dengan tahap 6 dan 7
-
-## 📸 Screenshot
-
-![Rename konfigurasi](img/config.php.png)
-lalu access website kalian
----
-
-# ✅ Hasil Deploy Website
-
-Website berhasil dijalankan.
-
-## 📸 Screenshot
-
-![Hasil Website](img/hasil.png)
-
----
-
-# 📁 Struktur Folder Image
-
-```txt
-img/
-├── create-database.png
-├── create-database2.png
-├── hasil.png
-├── import-sql.png
-├── import-sql2.png
-├── import-sql3.png
-├── import-sql4.png
-├── import-sql5.png
-├── import-sql6.png
-├── rename-ssl.png
-├── setup-apcahe2.png
-├── setup-pwphp.png
-├── setup-pwphp2.png
-├── setup-ssl.png
-├── setup-ssl1.png
-├── ssh.png
-├── upload-webiste2.png
-├── upload-website.png
-├── upload-website3.png
-└── wget.png
-```
 
 ---
 
 # 👨‍💻 Author
 
-Marcelino Kresna Pratama
+**Marcelino Kresna Pratama**
