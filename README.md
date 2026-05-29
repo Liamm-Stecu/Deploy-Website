@@ -197,6 +197,7 @@ dpkg -i webmin_2.630_all.deb
 ```bash
 apt install -f
 ```
+Lalu dpkg ulang
 
 ---
 
@@ -319,6 +320,7 @@ Upload folder website ke:
 
 ![Import SQL 4](img/import-sql4.png)
 
+Kalo import bisa, langsung akses website nya
 ---
 
 # ❌ Jika Error Import SQL
