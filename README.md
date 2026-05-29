@@ -339,6 +339,16 @@ Error 1146 Table doesn't exist
 
 ---
 
+# ✅ Hasil Deploy Website
+
+Website berhasil dijalankan.
+
+## 📸 Screenshot
+
+![Hasil Website](img/hasil.png)
+
+---
+
 # 💻 Trobleshoot — Import SQL via CLI Terminal
 
 Jika Webmin gagal import SQL, gunakan terminal Debian.
@@ -371,6 +381,10 @@ mysql -u root -p acelajg_db < /var/www/html/ecommerce/ecommerce.sql
 
 Website berhasil dijalankan.
 
+## 📸 Screenshot
+
+![Hasil Website](img/hasil.png)
+
 ---
 
 ## Trobleshoot - error http 500
@@ -382,8 +396,12 @@ Jika import sql nya bisa tapi saat akses website nya error HTTP 500
 
 ## 📸 Screenshot
 
-![Rename konfigurasi](img/hasil.png)
+![Rename konfigurasi](img/config.php.png)
 ---
+
+# ✅ Hasil Deploy Website
+
+Website berhasil dijalankan.
 
 ## 📸 Screenshot
 
