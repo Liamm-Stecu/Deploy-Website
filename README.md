@@ -9,7 +9,7 @@
 ## Login SSH via CMD Windows
 
 ```bash
-ssh marcel@192.168.1.9
+ssh user@ip_debian
 ```
 
 ## Masuk Root
@@ -179,7 +179,7 @@ systemctl start apache2
 ## Download Webmin
 
 ```bash
-wget http://192.168.1.6/webmin_2.630_all.deb
+wget http/ip_website/webmin_2.630_all.deb
 ```
 
 ---
