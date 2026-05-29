@@ -374,7 +374,7 @@ mysql -u root -p acelajg_db < /var/www/html/ecommerce/ecommerce.sql
 ## 📸 Screenshot
 
 ![Import CLI](img/import-sql6.png)
-
+lalu access website kalian
 ---
 
 # ✅ Hasil Deploy Website
@@ -397,6 +397,7 @@ Jika import sql nya bisa tapi saat akses website nya error HTTP 500
 ## 📸 Screenshot
 
 ![Rename konfigurasi](img/config.php.png)
+lalu access website kalian
 ---
 
 # ✅ Hasil Deploy Website
